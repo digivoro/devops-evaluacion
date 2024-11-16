@@ -11,13 +11,11 @@ pipeline {
         checkout scm
       }
     }
-    
     stage('Construir aplicacion') {
       steps {
         sh 'mvn clean package'
       }
     }
-    
     stage('Pruebas') {
       steps {
         sh 'mvn test'
@@ -28,13 +26,11 @@ pipeline {
         }
       }
     }
-    
     stage('Construir imagen') {
       steps {
         sh 'docker build -t java-demo:latest .'
       }
     }
-    
     stage('Despliegue') {
       steps {
         dir('terraform') {
