@@ -26,21 +26,5 @@ pipeline {
         }
       }
     }
-    stage('Construir imagen') {
-      steps {
-        sh 'docker build -t java-demo:latest .'
-      }
-    }
-    stage('Despliegue') {
-      steps {
-        dir('terraform') {
-          sh '''
-            terraform init
-            terraform plan
-            terraform apply -auto-approve
-          '''
-        }
-      }
-    }
   }
 }
